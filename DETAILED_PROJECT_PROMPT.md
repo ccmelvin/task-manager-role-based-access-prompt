@@ -1,52 +1,54 @@
 # Comprehensive Project Prompt: Task Manager with Role-Based Access Control
 
 ## Project Overview
-Create a complete serverless task management system with comprehensive role-based access control using AWS services and React. The system must support three distinct user roles with different permission levels and provide secure, scalable task management capabilities.
+Create a complete serverless task management system with comprehensive role-based access control using AWS services and React. The system MUST support three distinct user roles with different permission levels and SHALL provide secure, scalable task management capabilities.
+
+**RFC 2119 Compliance**: The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
 
 ## Architecture Requirements
 
 ### Frontend Stack
-- **Framework**: React SPA with TypeScript
-- **Authentication**: AWS Amplify with Cognito integration
-- **UI Components**: Modern, responsive design
-- **State Management**: Context API or Redux for user state
-- **Routing**: React Router with protected routes based on user roles
+- **Framework**: MUST use React SPA with TypeScript
+- **Authentication**: MUST implement AWS Amplify with Cognito integration
+- **UI Components**: SHOULD use modern, responsive design
+- **State Management**: MAY use Context API or Redux for user state
+- **Routing**: MUST implement React Router with protected routes based on user roles
 
 ### Backend Stack
-- **API**: AWS API Gateway with Lambda integration
-- **Functions**: AWS Lambda (Node.js/TypeScript)
-- **Authorization**: Custom Lambda authorizer for JWT validation
-- **Database**: DynamoDB with optimized table design
-- **Storage**: S3 for file attachments with presigned URLs
-- **CORS**: Properly configured for secure cross-origin requests
+- **API**: MUST use AWS API Gateway with Lambda integration
+- **Functions**: MUST implement AWS Lambda (Node.js/TypeScript)
+- **Authorization**: MUST implement custom Lambda authorizer for JWT validation
+- **Database**: MUST use DynamoDB with optimized table design
+- **Storage**: MUST use S3 for file attachments with presigned URLs
+- **CORS**: MUST be properly configured for secure cross-origin requests
 
 ### Infrastructure
-- **IaC**: AWS CDK (TypeScript) for complete infrastructure deployment
-- **Security**: IAM roles with least privilege principle
-- **Monitoring**: CloudWatch logs and metrics
-- **Environment**: Support for dev/staging/prod environments
+- **IaC**: MUST use AWS CDK (TypeScript) for complete infrastructure deployment
+- **Security**: MUST implement IAM roles with least privilege principle
+- **Monitoring**: MUST include CloudWatch logs and metrics
+- **Environment**: SHOULD support dev/staging/prod environments
 
 ## User Role System
 
 ### Admin Role
-- **Permissions**: Full CRUD operations on all tasks
-- **User Management**: Create, modify, delete user accounts
-- **System Configuration**: Manage system settings and permissions
-- **Reporting**: Access to all system analytics and reports
-- **Task Assignment**: Can assign tasks to any user
+- **Permissions**: MUST have full CRUD operations on all tasks
+- **User Management**: MUST be able to create, modify, delete user accounts
+- **System Configuration**: MUST be able to manage system settings and permissions
+- **Reporting**: MUST have access to all system analytics and reports
+- **Task Assignment**: MUST be able to assign tasks to any user
 
 ### Contributor Role
-- **Task Management**: Create and edit own tasks
-- **Task Viewing**: View tasks assigned to them
-- **File Operations**: Upload and manage attachments
-- **Collaboration**: Comment on assigned tasks
-- **Status Updates**: Update status of own and assigned tasks
+- **Task Management**: MUST be able to create and edit own tasks
+- **Task Viewing**: MUST be able to view tasks assigned to them
+- **File Operations**: MUST be able to upload and manage attachments
+- **Collaboration**: MAY comment on assigned tasks
+- **Status Updates**: SHOULD be able to update status of own and assigned tasks
 
 ### Viewer Role
-- **Read-Only Access**: View assigned tasks only
-- **No Modifications**: Cannot create, edit, or delete tasks
-- **Limited Viewing**: Only see tasks specifically assigned to them
-- **Download Only**: Can download attachments but not upload
+- **Read-Only Access**: MUST have view access to assigned tasks only
+- **No Modifications**: MUST NOT be able to create, edit, or delete tasks
+- **Limited Viewing**: MUST only see tasks specifically assigned to them
+- **Download Only**: MAY download attachments but MUST NOT upload
 
 ## Database Schema Design
 
@@ -138,22 +140,22 @@ PUT /users/{userId}/role
 ## Security Implementation
 
 ### Authentication Flow
-1. **User Registration**: Cognito user pool with email verification
-2. **Login Process**: Cognito hosted UI or custom login form
-3. **Token Management**: JWT tokens with automatic refresh
-4. **Session Handling**: Secure token storage and validation
+1. **User Registration**: MUST use Cognito user pool with email verification
+2. **Login Process**: MAY use Cognito hosted UI or custom login form
+3. **Token Management**: MUST implement JWT tokens with automatic refresh
+4. **Session Handling**: MUST implement secure token storage and validation
 
 ### Authorization Strategy
-1. **Lambda Authorizer**: Custom authorizer validates JWT tokens
-2. **Role Verification**: Check user's Cognito group membership
-3. **Resource Access**: Validate user permissions for specific resources
-4. **API Gateway**: Integration with custom authorizer for all endpoints
+1. **Lambda Authorizer**: MUST implement custom authorizer to validate JWT tokens
+2. **Role Verification**: MUST check user's Cognito group membership
+3. **Resource Access**: MUST validate user permissions for specific resources
+4. **API Gateway**: MUST integrate with custom authorizer for all endpoints
 
 ### Data Security
-1. **Encryption**: DynamoDB encryption at rest
-2. **S3 Security**: Bucket policies with restricted access
-3. **HTTPS Only**: All API communications over TLS
-4. **Input Validation**: Comprehensive input sanitization
+1. **Encryption**: MUST implement DynamoDB encryption at rest
+2. **S3 Security**: MUST implement bucket policies with restricted access
+3. **HTTPS Only**: MUST use HTTPS for all API communications over TLS
+4. **Input Validation**: MUST implement comprehensive input sanitization
 
 ## Frontend Implementation Requirements
 
@@ -195,13 +197,13 @@ src/
 ```
 
 ### Key Features to Implement
-1. **Dashboard**: Role-specific dashboard with relevant metrics
-2. **Task Management**: CRUD operations with role-based restrictions
-3. **File Upload**: Drag-and-drop file upload with progress indicators
-4. **Real-time Updates**: WebSocket or polling for live task updates
-5. **Search & Filter**: Advanced search with multiple filter options
-6. **Responsive Design**: Mobile-first responsive layout
-7. **Error Handling**: Comprehensive error boundaries and user feedback
+1. **Dashboard**: MUST implement role-specific dashboard with relevant metrics
+2. **Task Management**: MUST implement CRUD operations with role-based restrictions
+3. **File Upload**: SHOULD implement drag-and-drop file upload with progress indicators
+4. **Real-time Updates**: MAY implement WebSocket or polling for live task updates
+5. **Search & Filter**: SHOULD implement advanced search with multiple filter options
+6. **Responsive Design**: MUST implement mobile-first responsive layout
+7. **Error Handling**: MUST implement comprehensive error boundaries and user feedback
 
 ## Backend Implementation Requirements
 
@@ -234,12 +236,12 @@ backend/
 ```
 
 ### Key Backend Features
-1. **Input Validation**: Joi or similar for request validation
-2. **Error Handling**: Standardized error responses
-3. **Logging**: Structured logging with correlation IDs
-4. **Performance**: Optimized DynamoDB queries with proper indexing
-5. **Rate Limiting**: API Gateway throttling configuration
-6. **Monitoring**: CloudWatch metrics and alarms
+1. **Input Validation**: MUST use Joi or similar for request validation
+2. **Error Handling**: MUST implement standardized error responses
+3. **Logging**: MUST implement structured logging with correlation IDs
+4. **Performance**: MUST implement optimized DynamoDB queries with proper indexing
+5. **Rate Limiting**: SHOULD implement API Gateway throttling configuration
+6. **Monitoring**: MUST implement CloudWatch metrics and alarms
 
 ## Infrastructure as Code (CDK)
 
@@ -262,33 +264,46 @@ infrastructure/
 ```
 
 ### CDK Implementation Requirements
-1. **Environment Configuration**: Support for multiple environments
-2. **Resource Tagging**: Consistent tagging strategy
-3. **IAM Policies**: Least privilege access patterns
-4. **Outputs**: Export important resource ARNs and URLs
-5. **Dependencies**: Proper stack dependencies and cross-references
+1. **Environment Configuration**: MUST support multiple environments
+2. **Resource Tagging**: MUST implement consistent tagging strategy
+3. **IAM Policies**: MUST follow least privilege access patterns
+4. **Outputs**: SHOULD export important resource ARNs and URLs
+5. **Dependencies**: MUST implement proper stack dependencies and cross-references
 
 ## Development Workflow
 
 ### Setup Instructions
-1. **Prerequisites**: AWS CLI, Node.js 18+, CDK CLI
-2. **Installation**: Multi-package dependency installation
-3. **Configuration**: Environment-specific configuration files
-4. **Deployment**: Automated deployment pipeline
-5. **Testing**: Unit and integration test setup
+1. **Prerequisites**: MUST have AWS CLI, Node.js 18+, CDK CLI
+2. **Installation**: MUST support multi-package dependency installation
+3. **Configuration**: MUST provide environment-specific configuration files
+4. **Deployment**: SHOULD implement automated deployment pipeline
+5. **Testing**: MUST include unit and integration test setup
 
 ### Quality Assurance
-1. **Code Standards**: ESLint, Prettier configuration
-2. **Type Safety**: Strict TypeScript configuration
-3. **Testing**: Jest for unit tests, Cypress for E2E
-4. **Security**: Regular dependency vulnerability scans
-5. **Performance**: Bundle size optimization and monitoring
+1. **Code Standards**: MUST implement ESLint, Prettier configuration
+2. **Type Safety**: MUST use strict TypeScript configuration
+3. **Testing**: MUST use Jest for unit tests, MAY use Cypress for E2E
+4. **Security**: SHOULD implement regular dependency vulnerability scans
+5. **Performance**: SHOULD implement bundle size optimization and monitoring
 
 ## Success Criteria
 
-### Functional Requirements
-- [ ] Users can register and login with email verification
-- [ ] Role-based access control works correctly for all endpoints
+### Functional Requirements (MUST be implemented)
+- [ ] Users MUST be able to register and login with email verification
+- [ ] Role-based access control MUST be fully functional
+- [ ] Admin users MUST have full system access
+- [ ] Contributor users MUST be able to manage their own tasks
+- [ ] Viewer users MUST have read-only access to assigned tasks
+- [ ] File upload and download MUST work securely
+- [ ] API endpoints MUST implement proper authentication and authorization
+
+### Non-Functional Requirements
+- [ ] System MUST respond within 2 seconds for API calls
+- [ ] Application MUST be mobile responsive
+- [ ] All data MUST be encrypted at rest and in transit
+- [ ] System SHOULD support 1000+ concurrent users
+- [ ] Code coverage MUST be at least 80%
+- [ ] All AWS resources MUST follow least privilege principles control works correctly for all endpoints
 - [ ] Tasks can be created, viewed, updated, and deleted based on permissions
 - [ ] File attachments upload and download successfully
 - [ ] Admin users can manage other users and their roles
